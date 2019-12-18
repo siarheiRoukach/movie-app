@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  width: 95%;
+
+  &__title {
+    color: #2196f3;
+    text-decoration: none;
+  }
+
+  @media screen and (max-width: 950px) {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+
+    &__controls {
+      width: 80%;
+    }
+  }
+}

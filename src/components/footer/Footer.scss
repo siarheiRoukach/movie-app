@@ -1,0 +1,9 @@
+footer {
+  color: #2196f3;
+  margin: 0 auto;
+  width: 98%;
+
+  @media screen and (max-width: 950px) {
+    text-align: center;
+  }
+}
