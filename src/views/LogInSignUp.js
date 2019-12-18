@@ -6,18 +6,17 @@ import { logIn } from "../redux/modules/auth";
 const LogInSignUp = () => {
   let location = useLocation();
 
-  const loggedStatus = useSelector(state => {
-    console.log(state);
-    return state.auth.isAuthenticated;
-  }, shallowEqual);
+  const loggedStatus = useSelector(
+    state => state.auth.isAuthenticated,
+    shallowEqual
+  );
 
   const dispatch = useDispatch();
 
   const mockAuth = () => {
-    console.log("mock auth started");
     dispatch(logIn());
   };
-  //check store.auth
+
   return (
     <div>
       {loggedStatus && (

@@ -1,19 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
+
 import ButtonNav from "../../common/buttonNav/ButtonNav";
 import ButtonGeneric from "../../common/buttonGeneric/ButtonGeneric";
-
 import FadeMenuNav from "../../common/fadeMenuNav/FadeMenuNav";
 import { logOut } from "../../redux/modules/auth";
 import "./Header.scss";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const loggedStatus = useSelector(state => {
-    console.log(state);
-    return state.auth.isAuthenticated;
-  }, shallowEqual);
+  const loggedStatus = useSelector(
+    state => state.auth.isAuthenticated,
+    shallowEqual
+  );
+
   return (
     <header className="header">
       <h2>
