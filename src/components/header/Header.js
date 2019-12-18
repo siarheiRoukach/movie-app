@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-
+import { ViewContext } from "../../utils/ViewsContextProvider";
 import ButtonNav from "../../common/buttonNav/ButtonNav";
 import ButtonGeneric from "../../common/buttonGeneric/ButtonGeneric";
-import FadeMenuNav from "../../common/fadeMenuNav/FadeMenuNav";
+import FadeMenuNav from "../fadeMenuNav/FadeMenuNav";
 import { logOut } from "../../redux/modules/auth";
 import "./Header.scss";
 
@@ -14,6 +14,27 @@ const Header = () => {
     state => state.auth.isAuthenticated,
     shallowEqual
   );
+  const viewsContext = useContext(ViewContext);
+
+  const mobileControlsView = (
+    <>
+      <ButtonNav to="/profile">My Profile</ButtonNav>
+      <ButtonGeneric
+        event="logOut"
+        onClick={() => {
+          dispatch(logOut());
+        }}
+      >
+        Log Out
+      </ButtonGeneric>
+    </>
+  );
+
+  const desktopControlsDisplay = <FadeMenuNav />;
+
+  const profileControlsDisplay = viewsContext
+    ? mobileControlsView
+    : desktopControlsDisplay;
 
   return (
     <header className="header">
@@ -24,18 +45,7 @@ const Header = () => {
       </h2>
       <div className="header__controls">
         {loggedStatus ? (
-          <>
-            <ButtonNav to="/profile">My Profile</ButtonNav>
-            <ButtonGeneric
-              event="logOut"
-              onClick={() => {
-                dispatch(logOut());
-              }}
-            >
-              Log Out
-            </ButtonGeneric>
-            <FadeMenuNav />
-          </>
+          <> {profileControlsDisplay}</>
         ) : (
           <>
             <ButtonNav to="/login">Log In</ButtonNav>

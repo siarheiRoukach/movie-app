@@ -27,12 +27,14 @@ const LogInSignUp = () => {
           }}
         />
       )}
+
       {location.pathname === "/login" && (
         <>
           <p>This is redirected LogIn Page</p>
           <button onClick={mockAuth}>LogIn</button>
         </>
       )}
+
       {location.pathname === "/signup" && (
         <>
           <p>This is redirected Sign Up Page</p>
