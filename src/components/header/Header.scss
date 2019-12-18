@@ -1,22 +1,36 @@
 .header {
   align-items: center;
+  border-bottom: 1px solid #ebebeb;
   display: flex;
   margin: 0 auto;
   justify-content: space-between;
-  width: 95%;
+  width: 100%;
 
   &__title {
-    color: #2196f3;
-    text-decoration: none;
+    margin-left: 5%;
+    a {
+      color: #2196f3;
+      text-decoration: none;
+    }
+  }
+
+  &__controls {
+    margin-right: 5%;
   }
 
   @media screen and (max-width: 950px) {
+    border-bottom: none;
     flex-direction: column;
     justify-content: center;
     width: 100%;
 
+    &__title {
+      margin-left: 0;
+    }
+
     &__controls {
       width: 80%;
+      margin-right: 0;
     }
   }
 }
