@@ -1,14 +1,14 @@
 import React from "react";
 import { useDispatch, shallowEqual, useSelector } from "react-redux";
 import { useLocation, Redirect } from "react-router-dom";
-import { logIn } from "./duck/actions";
+import { logIn } from "../redux/modules/auth";
 
 const LogInSignUp = () => {
   let location = useLocation();
 
   const loggedStatus = useSelector(state => {
     console.log(state);
-    return state.logInSignUp.isAuthenticated;
+    return state.auth.isAuthenticated;
   }, shallowEqual);
 
   const dispatch = useDispatch();

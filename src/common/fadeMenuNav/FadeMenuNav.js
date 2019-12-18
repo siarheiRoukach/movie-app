@@ -7,7 +7,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Fade from "@material-ui/core/Fade";
 import MenuIcon from "@material-ui/icons/Menu";
 
-import { logOut } from "../../home/duck/actions";
+import { logOut } from "../../redux/modules/auth";
 
 const Link = React.forwardRef((props, ref) => (
   <RouterLink ref={ref} {...props} />

@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import HomePage from "./home/HomePage";
-import LogInSignUp from "./logInSignUp/LogInSignUp";
+import HomePage from "./views/HomePage";
+import LogInSignUp from "./views/LogInSignUp";
 
 const App = () => {
   return (

@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ButtonUtils = props => {
+const ButtonGeneric = props => {
   const classes = useStyles(props);
   return (
     <>
@@ -41,4 +41,4 @@ const ButtonUtils = props => {
   );
 };
 
-export default ButtonUtils;
+export default ButtonGeneric;
