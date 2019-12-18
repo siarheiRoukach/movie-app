@@ -18,9 +18,8 @@ const useStyles = makeStyles(theme => ({
     border: 0,
     borderRadius: 3,
     color: "white",
-    height: 32,
+    height: 36,
     padding: "0 30px",
-    margin: "0 1rem",
     "&:hover": {
       backgroundColor: stylesUtils.logOutColorBg
     },
@@ -36,7 +35,11 @@ const ButtonGeneric = props => {
   const classes = useStyles(props);
   return (
     <>
-      <Button className={classes.root} variant="contained" {...props} />
+      <Button
+        {...props}
+        className={`${props.className} ${classes.root}`}
+        variant="contained"
+      />
     </>
   );
 };
