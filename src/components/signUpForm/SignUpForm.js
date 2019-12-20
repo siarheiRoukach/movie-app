@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { logIn } from "../../redux/modules/auth";
 import ButtonGeneric from "../../common/buttonGeneric/ButtonGeneric";
 import GoogleLogIn from "../../common/googleLogIn/GoogleLogIn";
+import Copyright from "../../common/copyright/Copyright";
 
 const Link = React.forwardRef((props, ref) => (
   <RouterLink ref={ref} {...props} />
@@ -216,9 +217,7 @@ const SignUpForm = () => {
             </Grid>
           </Grid>
           <Box mt={2} className={classes.copyright}>
-            <Typography variant="body2" color="textSecondary" align="center">
-              {`Copyright © Movie-App ${new Date().getFullYear()}`}
-            </Typography>
+            <Copyright />
           </Box>
         </form>
       </div>

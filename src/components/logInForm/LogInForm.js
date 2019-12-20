@@ -6,12 +6,13 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 
 import { logIn } from "../../redux/modules/auth";
 import ButtonGeneric from "../../common/buttonGeneric/ButtonGeneric";
 import GoogleLogIn from "../../common/googleLogIn/GoogleLogIn";
+import Copyright from "../../common/copyright/Copyright";
 
 const Link = React.forwardRef((props, ref) => (
   <RouterLink ref={ref} {...props} />
@@ -155,9 +156,7 @@ const LogInForm = () => {
             </Grid>
           </Grid>
           <Box mt={2} className={classes.copyright}>
-            <Typography variant="body2" color="textSecondary" align="center">
-              {`Copyright © Movie-App ${new Date().getFullYear()}`}
-            </Typography>
+            <Copyright />
           </Box>
         </form>
       </div>
