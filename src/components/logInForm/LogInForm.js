@@ -4,10 +4,19 @@ import { Link as RouterLink } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { makeStyles } from "@material-ui/core/styles";
+import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
+import FormControl from "@material-ui/core/FormControl";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import InputLabel from "@material-ui/core/InputLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import FormHelperText from "@material-ui/core/FormHelperText";
+
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 import { logIn } from "../../redux/modules/auth";
 import ButtonGeneric from "../../common/buttonGeneric/ButtonGeneric";
@@ -28,6 +37,9 @@ const useStyles = makeStyles(theme => ({
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: "#2196F3"
+  },
+  margin: {
+    margin: theme.spacing(1, 0)
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -61,6 +73,7 @@ const LogInForm = () => {
   const dispatch = useDispatch();
 
   const [userCreds, setUserCreds] = useState({ email: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
 
   const onChange = e => {
     setUserCreds({ ...userCreds, [e.target.name]: e.target.value });
@@ -111,23 +124,43 @@ const LogInForm = () => {
             type="email"
             onChange={onChange}
           />
-          <TextField
+          <FormControl
             variant="outlined"
-            margin="normal"
             required
             fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            onChange={onChange}
+            className={classes.margin}
             error={validationError}
-            helperText={
-              validationError ? "Current Email or Password is invalid" : ""
-            }
-          />
-
+          >
+            <InputLabel htmlFor="outlined-adornment-password">
+              Password
+            </InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-password"
+              type={showPassword ? "text" : "password"}
+              onChange={onChange}
+              name="password"
+              autoComplete="current-password"
+              inputProps={{ minLength: 8 }}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={() => setShowPassword(!showPassword)}
+                    onMouseDown={e => e.preventDefault()}
+                    edge="end"
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              labelWidth={70}
+            />
+            {validationError && (
+              <FormHelperText htmlFor="outlined-adornment-password">
+                Current Email or Password is invalid
+              </FormHelperText>
+            )}
+          </FormControl>
           <Box justify="center" mb={2}>
             <ButtonGeneric
               type="submit"
