@@ -1,20 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import ViewContextProvider from "./utils/ViewsContextProvider";
+import { logIn } from "./redux/modules/auth";
 import HomePage from "./views/HomePage";
-//import Authorization from "./views/Authorization";
-import LogIn from "./views/LogIn";
-import SignUp from "./views/SignUp";
+
+import Authorization from "./views/Authorization";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (Object.entries(currentUser).length) {
+      dispatch(logIn(currentUser));
+    }
+  }, []);
+
   return (
     <div className="App">
       <ViewContextProvider>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/login" component={LogIn} />
-          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/login" component={Authorization} />
+          <Route exact path="/signup" component={Authorization} />
           <Route exact path="/profile" component={() => "Profile page"} />
           <Route path="*" component={() => "404 NOT FOUND"} />
         </Switch>

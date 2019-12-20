@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
+
+import GoogleLogOut from "../../common/googleLogIn/GoogleLogIn";
 import { ViewContext } from "../../utils/ViewsContextProvider";
 import ButtonNav from "../../common/buttonNav/ButtonNav";
 import ButtonGeneric from "../../common/buttonGeneric/ButtonGeneric";
@@ -10,31 +12,46 @@ import "./Header.scss";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const loggedStatus = useSelector(
-    state => state.auth.isAuthenticated,
-    shallowEqual
-  );
+  const userStatus = useSelector(state => {
+    return {
+      isAuthenticated: state.auth.isAuthenticated,
+      userToken: state.auth.currentUser.token
+    };
+  }, shallowEqual);
   const viewsContext = useContext(ViewContext);
+
+  const handleLogOut = response => {
+    dispatch(logOut());
+  };
 
   const mobileControlsView = (
     <>
       <ButtonNav to="/profile">My Profile</ButtonNav>
-      <ButtonGeneric
-        event="logOut"
-        onClick={() => {
-          dispatch(logOut());
-        }}
-      >
-        Log Out
-      </ButtonGeneric>
+      {userStatus.token ? (
+        <GoogleLogOut
+          render={renderProps => (
+            <ButtonGeneric
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+              event="logOut"
+            >
+              Logout
+            </ButtonGeneric>
+          )}
+        />
+      ) : (
+        <ButtonGeneric event="logOut" onClick={handleLogOut}>
+          Log Out
+        </ButtonGeneric>
+      )}
     </>
   );
 
-  const desktopControlsDisplay = <FadeMenuNav />;
+  const desktopControlsView = <FadeMenuNav />;
 
-  const profileControlsDisplay = viewsContext
+  const profileControlsViewy = viewsContext
     ? mobileControlsView
-    : desktopControlsDisplay;
+    : desktopControlsView;
 
   return (
     <header className="header">
@@ -42,8 +59,8 @@ const Header = () => {
         <Link to="/">Movie-App</Link>
       </h2>
       <div className="header__controls">
-        {loggedStatus ? (
-          <> {profileControlsDisplay}</>
+        {userStatus.isAuthenticated ? (
+          <> {profileControlsViewy}</>
         ) : (
           <>
             <ButtonNav to="/login">Log In</ButtonNav>
