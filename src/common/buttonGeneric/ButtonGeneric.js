@@ -6,7 +6,7 @@ const stylesUtils = {
   mainColor: "#2196F3",
   hoverColorBg: "#21CBF3",
   logOutColor: "#DC004E",
-  hoverColorBg: "#FE6B8B"
+  hoverLogOutColorBg: "#FE6B8B"
 };
 
 const useStyles = makeStyles(theme => ({
@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     height: 36,
     padding: "0 30px",
     "&:hover": {
-      backgroundColor: stylesUtils.hoverColorBg
+      backgroundColor: stylesUtils.hoverLogOutColorBg
     },
     [theme.breakpoints.down("sm")]: {
       width: "100%",
