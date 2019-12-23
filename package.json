@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "eslint-plugin-react-hooks": "^2.3.0",
+    "prop-types": "^15.7.2",
     "redux-logger": "^3.0.6"
   }
 }
