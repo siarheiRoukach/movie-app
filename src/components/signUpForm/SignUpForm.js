@@ -40,6 +40,27 @@ const reducer = (state, { field, value }) => {
   return { ...state, [field]: value };
 };
 
+const addNewUserToStorage = userObj => {
+  let usersDb = JSON.parse(localStorage.getItem("usersDb"));
+  if (!Array.isArray(usersDb)) usersDb = [];
+  if (userObj.id === 0) {
+    userObj.id = usersDb.length + 1;
+  }
+  usersDb.push(userObj);
+  localStorage.setItem("usersDb", JSON.stringify(usersDb));
+};
+
+const validateNewUser = userObj => {
+  const usersDb = JSON.parse(localStorage.getItem("usersDb"));
+  let answer = true;
+  if (Array.isArray(usersDb)) {
+    usersDb.forEach(user => {
+      if (user.email === userObj.email) answer = false;
+    });
+  }
+  return answer;
+};
+
 const useStyles = makeStyles(theme => ({
   paper: {
     margin: theme.spacing(8, 4),
@@ -91,27 +112,6 @@ const SignUpForm = () => {
     reactDispatch({ field: e.target.name, value: e.target.value });
   };
 
-  const addNewUserToStorage = userObj => {
-    let usersDb = JSON.parse(localStorage.getItem("usersDb"));
-    if (!Array.isArray(usersDb)) usersDb = [];
-    if (userObj.id === 0) {
-      userObj.id = usersDb.length + 1;
-    }
-    usersDb.push(userObj);
-    localStorage.setItem("usersDb", JSON.stringify(usersDb));
-  };
-
-  const validateNewUser = userObj => {
-    const usersDb = JSON.parse(localStorage.getItem("usersDb"));
-    let answer = true;
-    if (Array.isArray(usersDb)) {
-      usersDb.forEach(user => {
-        if (user.email === userObj.email) answer = false;
-      });
-    }
-    return answer;
-  };
-
   const formSubmit = e => {
     e.preventDefault();
     const newUser = { ...state };
@@ -124,7 +124,6 @@ const SignUpForm = () => {
     }
     if (validateNewUser(newUser)) {
       addNewUserToStorage(newUser);
-      setValidationError(false);
       dispatch(logIn(newUser));
     } else setValidationError(true);
   };

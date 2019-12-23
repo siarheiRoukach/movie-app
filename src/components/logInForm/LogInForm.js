@@ -27,6 +27,20 @@ const Link = React.forwardRef((props, ref) => (
   <RouterLink ref={ref} {...props} />
 ));
 
+const getUser = (mail, password) => {
+  let currentUser = {};
+  const usersDb = JSON.parse(localStorage.getItem("usersDb"));
+  if (Array.isArray(usersDb) && usersDb.length) {
+    usersDb.forEach(user => {
+      if (user.email === mail && user.password === password) {
+        currentUser = user;
+        return;
+      }
+    });
+  }
+  return currentUser;
+};
+
 const useStyles = makeStyles(theme => ({
   paper: {
     margin: theme.spacing(8, 4),
@@ -72,32 +86,21 @@ const LogInForm = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const [userCreds, setUserCreds] = useState({ email: "", password: "" });
+  const [userData, setUserData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
 
   const onChange = e => {
-    setUserCreds({ ...userCreds, [e.target.name]: e.target.value });
+    setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
   const [validationError, setValidationError] = useState(false);
 
   const formSubmit = e => {
     e.preventDefault();
-    let hasError = true;
-    const usersDb = JSON.parse(localStorage.getItem("usersDb"));
-    if (usersDb.length) {
-      usersDb.forEach(user => {
-        if (
-          user.email === userCreds.email &&
-          user.password === userCreds.password
-        ) {
-          hasError = false;
-          dispatch(logIn(user));
-          return;
-        }
-      });
-    }
-    setValidationError(hasError);
+    const currentUser = getUser(userData.email, userData.password);
+    Object.entries(currentUser).length
+      ? dispatch(logIn(currentUser))
+      : setValidationError(true);
   };
 
   return (
