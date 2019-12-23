@@ -16,6 +16,7 @@ const App = () => {
     if (currentUser && Object.entries(currentUser).length) {
       dispatch(logIn(currentUser));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
