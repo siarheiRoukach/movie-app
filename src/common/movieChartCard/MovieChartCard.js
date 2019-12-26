@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -45,6 +46,7 @@ const useStyles = makeStyles(theme => ({
 
 const MovieChartCard = ({ movieData }) => {
   const classes = useStyles();
+  const location = useLocation();
   return (
     <Card className={classes.card}>
       <CardMedia
@@ -72,7 +74,7 @@ const MovieChartCard = ({ movieData }) => {
         <ButtonNav
           className={classes.buttonNav}
           fullWidth
-          to={`/movie/${movieData.id}`}
+          to={{ pathname: `/movie/${movieData.id}`, state: { from: location } }}
         >
           View
         </ButtonNav>

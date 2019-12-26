@@ -11,10 +11,11 @@ const movieDb = [
     overview: "The third film based on Marvel's Guardians of the Galaxy.",
     budget: 0,
     revenue: 0,
+    runtime: 0,
     genres: ["Action", "Adventure", "Science Fiction"],
-    price: "15",
-    places: "45",
-    runtime: 0
+    trailerUrl: "",
+    price: 15.05,
+    places: "45"
   },
   {
     id: 348350,
@@ -30,9 +31,10 @@ const movieDb = [
     budget: 275000000,
     revenue: 393151347,
     genres: ["Action", "Adventure", "Family", "Science Fiction"],
-    price: "25",
-    places: "20",
-    runtime: 135
+    runtime: 135,
+    trailerUrl: "https://youtu.be/jPEYpryMp2s",
+    price: 25,
+    places: "20"
   },
   {
     id: 299534,
@@ -48,9 +50,10 @@ const movieDb = [
     budget: 200000000,
     revenue: 373500000,
     genres: ["Action", "Adventure", "Fantasy", "Science Fiction"],
-    price: "30",
-    places: "10",
-    runtime: 141
+    runtime: 141,
+    trailerUrl: "https://youtu.be/8Qn_spdM5Zg",
+    price: 30,
+    places: "10"
   },
   {
     id: 287947,
@@ -66,9 +69,10 @@ const movieDb = [
     budget: 159000000,
     revenue: 559635,
     genres: ["Biography", "Crime", "Drama"],
-    price: "15",
-    places: "30",
-    runtime: 209
+    runtime: 209,
+    trailerUrl: "https://youtu.be/WHXxVmeGQUc",
+    price: 15,
+    places: "30"
   },
   {
     id: 460019,
@@ -84,7 +88,10 @@ const movieDb = [
     budget: 321000000,
     revenue: 2048359754,
     genres: ["Action", "Adventure", "Science Fiction"],
-    runtime: 149
+    runtime: 149,
+    trailerUrl: "https://youtu.be/6ZfuNTqbHE8",
+    price: 10,
+    places: "60"
   },
   {
     id: 467867,
@@ -100,7 +107,10 @@ const movieDb = [
     budget: 100000000,
     revenue: 364571656,
     genres: ["Action", "Adventure", "Fantasy", "Science Fiction"],
-    runtime: 132
+    runtime: 132,
+    trailerUrl: "https://youtu.be/go6GEIrcvFY",
+    price: 10,
+    places: "70"
   },
   {
     id: 181790,
@@ -116,7 +126,10 @@ const movieDb = [
     budget: 138000000,
     revenue: 173469516,
     genres: ["Action", "Drama", "Sci-Fi", "Thriller"],
-    runtime: 117
+    runtime: 117,
+    trailerUrl: "https://youtu.be/AbyJignbSj0",
+    price: 10,
+    places: "70"
   },
   {
     id: 297802,
@@ -132,7 +145,10 @@ const movieDb = [
     budget: 160000000,
     revenue: 1148161807,
     genres: ["Action", "Adventure ", "Fantasy", "Science Fiction"],
-    runtime: 143
+    runtime: 143,
+    trailerUrl: "https://youtu.be/WDkg3h8PCVU",
+    price: 15,
+    places: "60"
   },
   {
     id: 372058,
@@ -149,7 +165,10 @@ const movieDb = [
     budget: 3380000000,
     revenue: 357986087,
     genres: ["Animation", "Drama", "Fantasy", "Romance", "Japanese"],
-    runtime: 112
+    runtime: 112,
+    price: 20,
+    places: "20",
+    trailerUrl: "https://youtu.be/xU47nhruN-Q"
   },
   {
     id: 378064,
@@ -165,7 +184,10 @@ const movieDb = [
     budget: 0,
     revenue: 33000000000,
     genres: ["Animation", "Drama ", "Romance", "Japanese"],
-    runtime: 130
+    runtime: 130,
+    trailerUrl: "https://youtu.be/nfK6UgLra7g",
+    price: 20,
+    places: "20"
   }
 ];
 

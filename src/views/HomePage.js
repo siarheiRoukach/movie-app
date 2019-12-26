@@ -1,13 +1,18 @@
 import React from "react";
+import { Switch, Route } from "react-router-dom";
 import Header from "../components/header/Header";
-import Main from "../components/main/Main";
+import DefaultMain from "../components/defaultMain/DefaultMain";
+import MovieCard from "../components/movieCard/MovieCard";
 import Footer from "../components/footer/Footer";
 
 const HomePage = () => {
   return (
     <>
       <Header />
-      <Main />
+      <Switch>
+        <Route exact path="/" component={DefaultMain} />
+        <Route exact path="/movie/:id" component={MovieCard} />
+      </Switch>
       <Footer />
     </>
   );
