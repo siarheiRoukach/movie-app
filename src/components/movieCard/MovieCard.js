@@ -161,15 +161,6 @@ const MovieCard = () => {
                   disabled={!isAuthenticated}
                 />
               </Grid>
-              <Grid container justify="flex-end">
-                <Typography
-                  component="span"
-                  variant="caption"
-                  style={{ color: "silver" }}
-                >
-                  {currentMovie.vote_count}
-                </Typography>
-              </Grid>
             </Grid>
           </Grid>
           <Grid container>

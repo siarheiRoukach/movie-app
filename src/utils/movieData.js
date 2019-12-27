@@ -4,7 +4,6 @@ const movieDb = [
     title: "Guardians of the Galaxy Vol. 3",
     tagline: "",
     vote_average: 0,
-    vote_count: 0,
     release_date: "2020-05-01",
     poster_path:
       "https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg",
@@ -22,7 +21,6 @@ const movieDb = [
     title: "Solo: A Star Wars Story",
     tagline: "Never tell him the odds.",
     vote_average: 6.9,
-    vote_count: 249497,
     release_date: "2018-05-23",
     poster_path:
       "https://image.tmdb.org/t/p/w500/uJ6OnE3CzGWq6buLINAbdBqa0gV.jpg",
@@ -41,7 +39,6 @@ const movieDb = [
     title: "Star Wars: Episode IX - The Rise of Skywalker",
     tagline: "The Saga Concludes.",
     vote_average: 7.0,
-    vote_count: 104941,
     release_date: "2019-12-20",
     poster_path:
       "https://m.media-amazon.com/images/M/MV5BMDljNTQ5ODItZmQwMy00M2ExLTljOTQtZTVjNGE2NTg0NGIxXkEyXkFqcGdeQXVyODkzNTgxMDg@._V1_SY1000_CR0,0,675,1000_AL_.jpg",
@@ -60,7 +57,6 @@ const movieDb = [
     title: "The Irishman",
     tagline: "His story changed history.",
     vote_average: 8.1,
-    vote_count: 147338,
     release_date: "2019-11-27",
     poster_path:
       "https://m.media-amazon.com/images/M/MV5BMGUyM2ZiZmUtMWY0OC00NTQ4LThkOGUtNjY2NjkzMDJiMWMwXkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_SY1000_CR0,0,682,1000_AL_.jpg",
@@ -79,7 +75,6 @@ const movieDb = [
     title: "Avengers: Infinity War",
     tagline: "Destiny arrives.",
     vote_average: 8.5,
-    vote_count: 732908,
     release_date: "2019-04-27",
     poster_path:
       "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SY1000_CR0,0,674,1000_AL_.jpg",
@@ -98,7 +93,6 @@ const movieDb = [
     title: "Shazam!",
     tagline: "If you want to save the world, say the magic word.",
     vote_average: 7.1,
-    vote_count: 199667,
     release_date: "2019-04-05",
     poster_path:
       "https://m.media-amazon.com/images/M/MV5BYTE0Yjc1NzUtMjFjMC00Y2I3LTg3NGYtNGRlMGJhYThjMTJmXkEyXkFqcGdeQXVyNTI4MzE4MDU@._V1_SY1000_CR0,0,674,1000_AL_.jpg",
@@ -117,7 +111,6 @@ const movieDb = [
     title: "Gemini Man",
     tagline: "Meet your match.",
     vote_average: 5.7,
-    vote_count: 36583,
     release_date: "2019-10-11",
     poster_path:
       "https://m.media-amazon.com/images/M/MV5BMWVmZmQ1YzEtOTI0OS00MjUyLWI5OWQtMTcyNjlhN2E1OWViXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg",
@@ -136,7 +129,6 @@ const movieDb = [
     title: "Aquaman",
     tagline: "Home is calling.",
     vote_average: 7.0,
-    vote_count: 316400,
     release_date: "2018-12-19",
     poster_path:
       "https://m.media-amazon.com/images/M/MV5BOTk5ODg0OTU5M15BMl5BanBnXkFtZTgwMDQ3MDY3NjM@._V1_SY1000_CR0,0,674,1000_AL_.jpg",
@@ -156,7 +148,6 @@ const movieDb = [
     tagline:
       "Experience Japan's #1 film of 2016, from visionary director Makoto Shinkai",
     vote_average: 8.4,
-    vote_count: 151389,
     release_date: "2017-04-06",
     poster_path:
       "https://m.media-amazon.com/images/M/MV5BODRmZDVmNzUtZDA4ZC00NjhkLWI2M2UtN2M0ZDIzNDcxYThjL2ltYWdlXkEyXkFqcGdeQXVyNTk0MzMzODA@._V1_SY1000_SX675_AL_.jpg",
@@ -175,7 +166,6 @@ const movieDb = [
     title: "A Silent Voice: The Movie",
     tagline: "Sometimes the answer is as simple as learning to listen...",
     vote_average: 8.2,
-    vote_count: 31456,
     release_date: "2016-09-17",
     poster_path:
       "https://m.media-amazon.com/images/M/MV5BM2Y1YmQ5YzItNDIxMi00YTAxLThkMTctNTg3M2EwOTg0NWQwXkEyXkFqcGdeQXVyMjI5MjU5OTI@._V1_.jpg",
