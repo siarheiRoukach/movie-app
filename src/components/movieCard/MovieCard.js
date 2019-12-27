@@ -10,6 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
+import MovieRatings from "../../common/movieRatings/MovieRatings";
 import ButtonNav from "../../common/buttonNav/ButtonNav";
 import { setActiveMovie } from "../../redux/modules/movie";
 import moviesDb from "../../utils/movieData";
@@ -65,7 +66,7 @@ const useStyles = makeStyles(theme => ({
   disabled: {},
   buttonBack: {
     height: 0,
-    margin: "3rem 4rem 1rem",
+    margin: "3rem 4rem 0",
     [theme.breakpoints.down("sm")]: {
       display: "none"
     }
@@ -78,12 +79,17 @@ const MovieCard = () => {
   let location = useLocation();
   let { id } = useParams();
   let { from } = location.state || { from: { pathname: "/" } };
+  const [currentMovie, setCurrentMovie] = useState({});
 
   const isAuthenticated = useSelector(
     state => state.auth.isAuthenticated,
     shallowEqual
   );
-  const [currentMovie, setCurrentMovie] = useState({});
+
+  const userMoviesRatings = useSelector(
+    state => state.auth.currentUser.movieRatings,
+    shallowEqual
+  );
 
   useEffect(() => {
     setCurrentMovie(moviesDb.filter(movie => movie.id === Number(id))[0]);
@@ -99,14 +105,14 @@ const MovieCard = () => {
   }, [currentMovie]);
 
   return (
-    <>
+    <main>
       <ButtonNav className={classes.buttonBack} to={from}>
         <ArrowBackIosIcon style={{ color: "#2196F3", fontSize: "2.5rem" }} />
       </ButtonNav>
       <div className={classes.paper}>
         <Container maxWidth="lg" disableGutters>
-          <Grid container>
-            <Grid item xs={12} sm={6} md={10}>
+          <Grid container alignItems="center">
+            <Grid item xs={12} sm={6} md={6}>
               <Typography component="h1" variant="h4">
                 {currentMovie.title}
               </Typography>
@@ -114,9 +120,9 @@ const MovieCard = () => {
             <Grid
               container
               item
-              xs={3}
+              xs={12}
               sm={6}
-              md={2}
+              md={6}
               justify="flex-end"
               alignItems="center"
             >
@@ -134,6 +140,27 @@ const MovieCard = () => {
               >
                 /10
               </Typography>
+
+              {userMoviesRatings && userMoviesRatings[currentMovie.title] && (
+                <Typography
+                  component="span"
+                  variant="h6"
+                  style={{ color: stylesUtils.captionColor }}
+                >
+                  &nbsp;(Your previous vote is:&nbsp;
+                  {userMoviesRatings[currentMovie.title]})
+                </Typography>
+              )}
+
+              <Grid container justify="flex-end" alignItems="center">
+                <MovieRatings
+                  moviename={currentMovie.title}
+                  rating={currentMovie.vote_average}
+                  maxrating={10}
+                  style={{ fontSize: "2rem" }}
+                  disabled={!isAuthenticated}
+                />
+              </Grid>
               <Grid container justify="flex-end">
                 <Typography
                   component="span"
@@ -279,7 +306,7 @@ const MovieCard = () => {
           </Grid>
         </Container>
       </div>
-    </>
+    </main>
   );
 };
 
