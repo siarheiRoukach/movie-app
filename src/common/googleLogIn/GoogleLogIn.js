@@ -2,9 +2,13 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/modules/auth";
 import { GoogleLogin } from "react-google-login";
+import { useLocation, useHistory } from "react-router-dom";
 
 const GoogleLogIn = props => {
   const dispatch = useDispatch();
+  let history = useHistory();
+  let location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
   const googleAuthSuccess = response => {
     const newUserObj = {
       id: response.profileObj.googleId,
@@ -16,6 +20,7 @@ const GoogleLogIn = props => {
       token: response.getAuthResponse().id_token
     };
     dispatch(logIn(newUserObj));
+    history.push(from);
   };
 
   const googleAuthFailure = response => {

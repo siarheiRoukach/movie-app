@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from "react";
 import { useDispatch } from "react-redux";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation, useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -99,9 +99,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SignUpForm = () => {
+const SignUpForm = props => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  let location = useLocation();
+  let history = useHistory();
+  let { from } = location.state || { from: { pathname: "/" } };
 
   const [validationError, setValidationError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -125,6 +128,7 @@ const SignUpForm = () => {
     if (validateNewUser(newUser)) {
       addNewUserToStorage(newUser);
       dispatch(logIn(newUser));
+      history.push(from);
     } else setValidationError(true);
   };
 

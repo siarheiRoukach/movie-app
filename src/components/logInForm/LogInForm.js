@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation, useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -85,7 +85,9 @@ const useStyles = makeStyles(theme => ({
 const LogInForm = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  let location = useLocation();
+  let history = useHistory();
+  let { from } = location.state || { from: { pathname: "/" } };
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
 
@@ -98,9 +100,10 @@ const LogInForm = () => {
   const formSubmit = e => {
     e.preventDefault();
     const currentUser = getUser(userData.email, userData.password);
-    Object.entries(currentUser).length
-      ? dispatch(logIn(currentUser))
-      : setValidationError(true);
+    if (Object.entries(currentUser).length) {
+      dispatch(logIn(currentUser));
+      history.push(from);
+    } else setValidationError(true);
   };
 
   return (
