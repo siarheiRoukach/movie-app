@@ -42,8 +42,6 @@ const reducer = (state = initialState, action) => {
     }
     case UPDATEUSERSDB: {
       const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-      if (currentUser.token) return state;
-
       const usersDb = JSON.parse(localStorage.getItem("usersDb"));
       const newUsersDb = usersDb.map(userObj =>
         currentUser.id === userObj.id ? { ...currentUser } : userObj
