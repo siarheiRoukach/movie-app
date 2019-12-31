@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
@@ -21,13 +21,15 @@ const App = () => {
   return (
     <div className="App">
       <ViewContextProvider>
-        <Switch>
-          <Route exact path="/login" component={Authorization} />
-          <Route exact path="/signup" component={Authorization} />
-          <Route exact path="/profile" component={() => "Profile page"} />
-          <Route path="/" component={HomePage} />
-          <Route path="*" component={() => "404 NOT FOUND"} />
-        </Switch>
+        <Suspense fallback="loading">
+          <Switch>
+            <Route exact path="/login" component={Authorization} />
+            <Route exact path="/signup" component={Authorization} />
+            <Route exact path="/profile" component={() => "Profile page"} />
+            <Route path="/" component={HomePage} />
+            <Route path="*" component={() => "404 NOT FOUND"} />
+          </Switch>
+        </Suspense>
       </ViewContextProvider>
     </div>
   );

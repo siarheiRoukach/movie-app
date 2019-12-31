@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -10,6 +11,14 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import ButtonNav from "../buttonNav/ButtonNav";
 import MovieRatings from "../../common/movieRatings/MovieRatings";
+
+const getDateDisplayValue = (date, format = "en-US") => {
+  return date
+    ? date.toLocaleString(format, {
+        year: "numeric"
+      })
+    : null;
+};
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -47,13 +56,17 @@ const useStyles = makeStyles(theme => ({
 
 const MovieChartCard = ({ movieData }) => {
   const classes = useStyles();
-  const location = useLocation();
+  const { t } = useTranslation(["translaitons", "movieCommon", "movieContent"]);
+  let location = useLocation();
+
   return (
     <Card className={classes.card}>
       <CardMedia
         className={classes.cardMedia}
         image={movieData.poster_path}
-        title="Image title"
+        title={t(`movieContent|title.${movieData.title}`, {
+          nsSeparator: "|"
+        })}
       />
       <CardContent className={classes.cardContent}>
         <Typography
@@ -62,10 +75,14 @@ const MovieChartCard = ({ movieData }) => {
           component="h2"
           className={classes.cardTitle}
         >
-          {movieData.title}
+          {t(`movieContent|title.${movieData.title}`, {
+            nsSeparator: "|"
+          })}
         </Typography>
         <Typography gutterBottom className={classes.cardGenres}>
-          {movieData.genres.join(", ")}
+          {movieData.genres
+            .map(genre => t(`movieCommon:genres.${genre}`))
+            .join(", ")}
         </Typography>
         <MovieRatings
           rating={movieData.vote_average}
@@ -75,7 +92,7 @@ const MovieChartCard = ({ movieData }) => {
           style={{ fontSize: "1.3rem", marginBottom: "0.5rem" }}
         />
         <Typography className={classes.cardDate}>
-          {movieData.release_date.split("-")[0]}
+          {getDateDisplayValue(new Date(movieData.release_date))}
         </Typography>
       </CardContent>
       <CardActions>
@@ -84,7 +101,7 @@ const MovieChartCard = ({ movieData }) => {
           fullWidth
           to={{ pathname: `/movie/${movieData.id}`, state: { from: location } }}
         >
-          View
+          {t("translations:common.view")}
         </ButtonNav>
       </CardActions>
     </Card>

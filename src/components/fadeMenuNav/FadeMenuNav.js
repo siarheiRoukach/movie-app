@@ -1,6 +1,7 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { useTranslation } from "react-i18next";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -22,6 +23,7 @@ const FadeMenuNavigation = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const userToken = useSelector(state => {
     return state.auth.currentUser.token;
@@ -63,7 +65,7 @@ const FadeMenuNavigation = () => {
           component={Link}
           to="/profile"
         >
-          My profile
+          {t("common.myProfile")}
         </MenuItem>
         {userToken ? (
           <GoogleLogOut
@@ -73,12 +75,12 @@ const FadeMenuNavigation = () => {
                 onClick={renderProps.onClick}
                 disabled={renderProps.disabled}
               >
-                Logout
+                {t("common.logOut")}
               </MenuItem>
             )}
           />
         ) : (
-          <MenuItem onClick={handleLogOut}>Logout</MenuItem>
+          <MenuItem onClick={handleLogOut}>{t("common.logOut")}</MenuItem>
         )}
       </Menu>
     </>
