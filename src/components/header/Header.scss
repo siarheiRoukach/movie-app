@@ -16,6 +16,8 @@
   }
 
   &__controls {
+    align-items: center;
+    justify-content: center;
     display: flex;
     flex-wrap: wrap;
     margin-right: 5%;
@@ -32,7 +34,8 @@
     }
 
     &__controls {
-      justify-content: center;
+      align-items: center;
+
       margin-right: 0;
       width: 80%;
     }

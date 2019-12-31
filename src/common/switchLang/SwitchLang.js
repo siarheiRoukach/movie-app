@@ -1,26 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-
-const useStyles = makeStyles(theme => ({
-  paper: {
-    margin: theme.spacing(4, 4),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
-  },
-  wrapper: {
-    [theme.breakpoints.down("sm")]: {
-      display: "flex",
-
-      justifyContent: "center"
-    }
-  }
-}));
 
 const AntSwitch = withStyles({
   switchBase: {
@@ -38,7 +22,6 @@ const AntSwitch = withStyles({
 
 const SwitchLang = props => {
   const { i18n } = useTranslation();
-  const classes = useStyles();
   const [lang, setLang] = useState(
     localStorage.getItem("i18nextLng") !== "en-US"
   );
@@ -50,13 +33,7 @@ const SwitchLang = props => {
 
   return (
     <Typography component="div">
-      <Grid
-        component="label"
-        container
-        alignItems="center"
-        spacing={1}
-        className={classes.wrapper}
-      >
+      <Grid component="label" container alignItems="center" spacing={1}>
         <Grid item>En</Grid>
         <Grid item>
           <AntSwitch
