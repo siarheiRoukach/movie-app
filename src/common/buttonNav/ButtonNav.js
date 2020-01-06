@@ -37,10 +37,10 @@ const ButtonNav = props => {
   return (
     <>
       <Button
-        className={classes.root}
+        {...props}
+        className={`${props.className} ${classes.root}`}
         variant="contained"
         component={Link}
-        {...props}
       />
     </>
   );
