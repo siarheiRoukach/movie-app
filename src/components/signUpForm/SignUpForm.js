@@ -51,14 +51,10 @@ const addNewUserToStorage = userObj => {
 };
 
 const validateNewUser = userObj => {
-  const usersDb = JSON.parse(localStorage.getItem("usersDb"));
-  let answer = true;
+  let usersDb = JSON.parse(localStorage.getItem("usersDb"));
   if (Array.isArray(usersDb)) {
-    usersDb.forEach(user => {
-      if (user.email === userObj.email) answer = false;
-    });
-  }
-  return answer;
+    return !usersDb.find(user => user.email === userObj.email);
+  } else return true;
 };
 
 const useStyles = makeStyles(theme => ({

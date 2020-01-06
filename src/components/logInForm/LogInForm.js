@@ -28,17 +28,14 @@ const Link = React.forwardRef((props, ref) => (
 ));
 
 const getUser = (mail, password) => {
-  let currentUser = {};
+  let currentUser;
   const usersDb = JSON.parse(localStorage.getItem("usersDb"));
-  if (Array.isArray(usersDb) && usersDb.length) {
-    usersDb.forEach(user => {
-      if (user.email === mail && user.password === password) {
-        currentUser = user;
-        return;
-      }
-    });
+  if (Array.isArray(usersDb)) {
+    currentUser = usersDb.find(
+      user => user.email === mail && user.password === password
+    );
   }
-  return currentUser;
+  return currentUser ? currentUser : {};
 };
 
 const useStyles = makeStyles(theme => ({

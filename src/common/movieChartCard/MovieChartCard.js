@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 import ButtonNav from "../buttonNav/ButtonNav";
+import MovieRatings from "../../common/movieRatings/MovieRatings";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -66,6 +67,13 @@ const MovieChartCard = ({ movieData }) => {
         <Typography gutterBottom className={classes.cardGenres}>
           {movieData.genres.join(", ")}
         </Typography>
+        <MovieRatings
+          rating={movieData.vote_average}
+          moviename={movieData.title}
+          maxrating={10}
+          readOnly
+          style={{ fontSize: "1.3rem", marginBottom: "0.5rem" }}
+        />
         <Typography className={classes.cardDate}>
           {movieData.release_date.split("-")[0]}
         </Typography>
