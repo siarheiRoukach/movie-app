@@ -12,7 +12,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import ButtonNav from "../buttonNav/ButtonNav";
 import MovieRatings from "../../common/movieRatings/MovieRatings";
 
-const getDateDisplayValue = (date, format = "en-US") => {
+const getDateDisplayValue = (
+  date,
+  format = localStorage.getItem("i18nextLng")
+) => {
   return date
     ? date.toLocaleString(format, {
         year: "numeric"
@@ -26,23 +29,23 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column"
   },
-  cardMedia: {
+  media: {
     paddingTop: "56.25%", // 16:9
     backgroundSize: "cover",
     minHeight: "175px"
   },
-  cardContent: {
+  content: {
     display: "flex",
     flexGrow: 1,
     flexDirection: "column"
   },
-  cardTitle: {
+  title: {
     flexGrow: 2
   },
-  cardGenres: {
+  genres: {
     color: "#a3a0a0"
   },
-  cardDate: {
+  date: {
     color: "#a3a0a0",
     fontSize: "0.9rem"
   },
@@ -56,30 +59,30 @@ const useStyles = makeStyles(theme => ({
 
 const MovieChartCard = ({ movieData }) => {
   const classes = useStyles();
-  const { t } = useTranslation(["translaitons", "movieCommon", "movieContent"]);
+  const { t } = useTranslation();
   let location = useLocation();
 
   return (
     <Card className={classes.card}>
       <CardMedia
-        className={classes.cardMedia}
+        className={classes.media}
         image={movieData.poster_path}
         title={t(`movieContent|title.${movieData.title}`, {
           nsSeparator: "|"
         })}
       />
-      <CardContent className={classes.cardContent}>
+      <CardContent className={classes.content}>
         <Typography
           gutterBottom
           variant="h5"
           component="h2"
-          className={classes.cardTitle}
+          className={classes.title}
         >
           {t(`movieContent|title.${movieData.title}`, {
             nsSeparator: "|"
           })}
         </Typography>
-        <Typography gutterBottom className={classes.cardGenres}>
+        <Typography gutterBottom className={classes.genres}>
           {movieData.genres
             .map(genre => t(`movieCommon:genres.${genre}`))
             .join(", ")}
@@ -91,7 +94,7 @@ const MovieChartCard = ({ movieData }) => {
           readOnly
           style={{ fontSize: "1.3rem", marginBottom: "0.5rem" }}
         />
-        <Typography className={classes.cardDate}>
+        <Typography className={classes.date}>
           {getDateDisplayValue(new Date(movieData.release_date))}
         </Typography>
       </CardContent>

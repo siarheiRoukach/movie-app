@@ -14,7 +14,8 @@ const movieDb = [
     genres: ["Action", "Adventure", "Science Fiction"],
     trailerUrl: "",
     price: 15.05,
-    places: "45"
+    places: "45",
+    comments: []
   },
   {
     id: 348350,
@@ -32,7 +33,8 @@ const movieDb = [
     runtime: 135,
     trailerUrl: "https://youtu.be/jPEYpryMp2s",
     price: 25,
-    places: "20"
+    places: "20",
+    comments: []
   },
   {
     id: 299534,
@@ -50,7 +52,8 @@ const movieDb = [
     runtime: 141,
     trailerUrl: "https://youtu.be/8Qn_spdM5Zg",
     price: 30,
-    places: "10"
+    places: "10",
+    comments: []
   },
   {
     id: 287947,
@@ -68,7 +71,8 @@ const movieDb = [
     runtime: 209,
     trailerUrl: "https://youtu.be/WHXxVmeGQUc",
     price: 15,
-    places: "30"
+    places: "30",
+    comments: []
   },
   {
     id: 460019,
@@ -86,7 +90,8 @@ const movieDb = [
     runtime: 149,
     trailerUrl: "https://youtu.be/6ZfuNTqbHE8",
     price: 10,
-    places: "60"
+    places: "60",
+    comments: []
   },
   {
     id: 467867,
@@ -104,7 +109,8 @@ const movieDb = [
     runtime: 132,
     trailerUrl: "https://youtu.be/go6GEIrcvFY",
     price: 10,
-    places: "70"
+    places: "70",
+    comments: []
   },
   {
     id: 181790,
@@ -122,7 +128,8 @@ const movieDb = [
     runtime: 117,
     trailerUrl: "https://youtu.be/AbyJignbSj0",
     price: 10,
-    places: "70"
+    places: "70",
+    comments: []
   },
   {
     id: 297802,
@@ -140,7 +147,8 @@ const movieDb = [
     runtime: 143,
     trailerUrl: "https://youtu.be/WDkg3h8PCVU",
     price: 15,
-    places: "60"
+    places: "60",
+    comments: []
   },
   {
     id: 372058,
@@ -157,9 +165,10 @@ const movieDb = [
     revenue: 357986087,
     genres: ["Animation", "Drama", "Fantasy", "Romance", "Japanese"],
     runtime: 112,
+    trailerUrl: "https://youtu.be/xU47nhruN-Q",
     price: 20,
     places: "20",
-    trailerUrl: "https://youtu.be/xU47nhruN-Q"
+    comments: []
   },
   {
     id: 378064,
@@ -177,7 +186,8 @@ const movieDb = [
     runtime: 130,
     trailerUrl: "https://youtu.be/nfK6UgLra7g",
     price: 20,
-    places: "20"
+    places: "20",
+    comments: []
   }
 ];
 
