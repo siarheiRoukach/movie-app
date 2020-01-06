@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { useTranslation } from "react-i18next";
 
+import SwitchLang from "../../common/switchLang/SwitchLang";
 import GoogleLogOut from "../../common/googleLogIn/GoogleLogIn";
 import { ViewContext } from "../../utils/ViewsContextProvider";
 import ButtonNav from "../../common/buttonNav/ButtonNav";
@@ -13,6 +15,8 @@ import "./Header.scss";
 const Header = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const { t } = useTranslation();
+
   const userStatus = useSelector(state => {
     return {
       isAuthenticated: state.auth.isAuthenticated,
@@ -27,7 +31,7 @@ const Header = () => {
 
   const mobileControlsView = (
     <>
-      <ButtonNav to="/profile">My Profile</ButtonNav>
+      <ButtonNav to="/profile">{t("common.myProfile")}</ButtonNav>
       {userStatus.token ? (
         <GoogleLogOut
           render={renderProps => (
@@ -36,13 +40,13 @@ const Header = () => {
               disabled={renderProps.disabled}
               event="logOut"
             >
-              Logout
+              {t("common.logOut")}
             </ButtonGeneric>
           )}
         />
       ) : (
         <ButtonGeneric event="logOut" onClick={handleLogOut}>
-          Log Out
+          {t("common.logOut")}
         </ButtonGeneric>
       )}
     </>
@@ -59,16 +63,18 @@ const Header = () => {
       <h2 className="header__title">
         <Link to="/">Movie-App</Link>
       </h2>
+
       <div className="header__controls">
+        <SwitchLang />
         {userStatus.isAuthenticated ? (
           <> {profileControlsViewy}</>
         ) : (
           <>
             <ButtonNav to={{ pathname: "/login", state: { from: location } }}>
-              Log In
+              {t("common.logIn")}
             </ButtonNav>
             <ButtonNav to={{ pathname: "/signup", state: { from: location } }}>
-              Sign Up
+              {t("common.signUp")}
             </ButtonNav>
           </>
         )}

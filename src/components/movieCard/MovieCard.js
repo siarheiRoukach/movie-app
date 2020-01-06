@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { useTranslation } from "react-i18next";
 import ReactPlayer from "react-player";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -16,6 +17,14 @@ import { setActiveMovie } from "../../redux/modules/movie";
 import moviesDb from "../../utils/movieData";
 
 const formatCurrency = (value, currency = "USD") => {
+  const localFormat = localStorage.getItem("i18nextLng");
+  if (localFormat === "ja-JP") {
+    return (value * 108).toLocaleString(localFormat, {
+      useGrouping: true,
+      style: "currency",
+      currency: "JPY"
+    });
+  }
   return value.toLocaleString("en-US", {
     useGrouping: true,
     style: "currency",
@@ -23,7 +32,7 @@ const formatCurrency = (value, currency = "USD") => {
   });
 };
 
-const getDateName = (date, format = "en-US") => {
+const getDateDisplayValue = (date, format = "en-US") => {
   return date
     ? date.toLocaleString(format, {
         year: "numeric",
@@ -76,6 +85,7 @@ const useStyles = makeStyles(theme => ({
 const MovieCard = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const { t } = useTranslation(["translaitons", "movieCommon", "movieContent"]);
   let location = useLocation();
   let { id } = useParams();
   let { from } = location.state || { from: { pathname: "/" } };
@@ -112,9 +122,11 @@ const MovieCard = () => {
       <div className={classes.paper}>
         <Container maxWidth="lg" disableGutters>
           <Grid container alignItems="center">
-            <Grid item xs={12} sm={6} md={6}>
+            <Grid item xs={12} sm={6} md={8}>
               <Typography component="h1" variant="h4">
-                {currentMovie.title}
+                {t(`movieContent|title.${currentMovie.title}`, {
+                  nsSeparator: "|"
+                })}
               </Typography>
             </Grid>
             <Grid
@@ -122,7 +134,7 @@ const MovieCard = () => {
               item
               xs={12}
               sm={6}
-              md={6}
+              md={4}
               justify="flex-end"
               alignItems="center"
             >
@@ -147,7 +159,7 @@ const MovieCard = () => {
                   variant="h6"
                   style={{ color: stylesUtils.captionColor }}
                 >
-                  &nbsp;(Your previous vote is:&nbsp;
+                  &nbsp;({t("translations:common.ratingsPrevious")}&nbsp;
                   {userMoviesRatings[currentMovie.title]})
                 </Typography>
               )}
@@ -170,7 +182,9 @@ const MovieCard = () => {
                 variant="subtitle1"
                 style={{ color: stylesUtils.captionColor }}
               >
-                {currentMovie.tagline}
+                {t(`movieContent|tagline.${currentMovie.title}`, {
+                  nsSeparator: "|"
+                })}
               </Typography>
             </Grid>
           </Grid>
@@ -180,7 +194,10 @@ const MovieCard = () => {
               variant="subtitle2"
               style={{ color: stylesUtils.lightMainColor }}
             >
-              {currentMovie.genres && currentMovie.genres.join(", ")}
+              {currentMovie.genres &&
+                currentMovie.genres
+                  .map(genre => t(`movieCommon:genres.${genre}`))
+                  .join(", ")}
             </Typography>
           </Grid>
           <Grid container spacing={5} style={{ marginTop: "1rem" }}>
@@ -201,9 +218,13 @@ const MovieCard = () => {
                 variant="h5"
                 className={classes.sectionHeading}
               >
-                About the movie
+                {t("movieCommon:description.aboutMovie")}
               </Typography>
-              <Typography paragraph>{currentMovie.overview}</Typography>
+              <Typography paragraph>
+                {t(`movieContent|overview.${currentMovie.title}`, {
+                  nsSeparator: "|"
+                })}
+              </Typography>
 
               <Grid container jusify="center" style={{ marginBottom: "1rem" }}>
                 {ReactPlayer.canPlay(currentMovie.trailerUrl) && (
@@ -221,11 +242,14 @@ const MovieCard = () => {
                     variant="h5"
                     className={classes.sectionHeading}
                   >
-                    Release Date
+                    {t("movieCommon:description.releaseDate")}
                   </Typography>
                   {currentMovie.release_date && (
                     <Typography paragraph>
-                      {getDateName(new Date(currentMovie.release_date))}
+                      {getDateDisplayValue(
+                        new Date(currentMovie.release_date),
+                        localStorage.getItem("i18nextLng")
+                      )}
                     </Typography>
                   )}
                 </Grid>
@@ -236,9 +260,11 @@ const MovieCard = () => {
                     variant="h5"
                     className={classes.sectionHeading}
                   >
-                    Runtime
+                    {t("movieCommon:description.runtime")}
                   </Typography>
-                  <Typography paragraph>{currentMovie.runtime} mins</Typography>
+                  <Typography paragraph>
+                    {currentMovie.runtime} {t("translations:common.mins")}
+                  </Typography>
                 </Grid>
 
                 {currentMovie.budget ? (
@@ -248,10 +274,9 @@ const MovieCard = () => {
                       variant="h5"
                       className={classes.sectionHeading}
                     >
-                      Budget
+                      {t("movieCommon:description.budget")}
                     </Typography>
                     <Typography paragraph>
-                      {" "}
                       {formatCurrency(currentMovie.budget)}
                     </Typography>
                   </Grid>
@@ -264,7 +289,7 @@ const MovieCard = () => {
                       variant="h5"
                       className={classes.sectionHeading}
                     >
-                      Revenue
+                      {t("movieCommon:description.revenue")}
                     </Typography>
                     <Typography paragraph>
                       {formatCurrency(currentMovie.revenue)}
@@ -290,7 +315,7 @@ const MovieCard = () => {
                     disabled: classes.disabled
                   }}
                 >
-                  Buy Ticket
+                  {t("translations:common.buyTicket")}
                 </ButtonNav>
               </Grid>
             </Grid>

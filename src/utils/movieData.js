@@ -136,7 +136,7 @@ const movieDb = [
       "Arthur Curry, half human half from Atlantis, goes on a trip of a lifetime. Not only does this adventure compel him to come to terms with his real identity, but it also forces him to discover whether he is entirely worthy of fulfilling his own destiny: becoming a king.",
     budget: 160000000,
     revenue: 1148161807,
-    genres: ["Action", "Adventure ", "Fantasy", "Science Fiction"],
+    genres: ["Action", "Adventure", "Fantasy", "Science Fiction"],
     runtime: 143,
     trailerUrl: "https://youtu.be/WDkg3h8PCVU",
     price: 15,
@@ -170,10 +170,10 @@ const movieDb = [
     poster_path:
       "https://m.media-amazon.com/images/M/MV5BM2Y1YmQ5YzItNDIxMi00YTAxLThkMTctNTg3M2EwOTg0NWQwXkEyXkFqcGdeQXVyMjI5MjU5OTI@._V1_.jpg",
     overview:
-      "The story revolves around Shôko Nishimiya, a grade school student who has impaired hearing. She transfers into a new school, where she is bullied by her classmates, especially Shôya Ishida. It gets to the point where she transfers to another school and as a result, Shôya is ostracized and bullied himself, with no friends to speak to and no plans for the future. Years later, he sets himself on a path to redemption. ",
+      "The story revolves around Shôko Nishimiya, a grade school student who has impaired hearing. She transfers into a new school, where she is bullied by her classmates, especially Shôya Ishida. It gets to the point where she transfers to another school and as a result, Shôya is ostracized and bullied himself, with no friends to speak to and no plans for the future. Years later, he sets himself on a path to redemption.",
     budget: 0,
     revenue: 33000000,
-    genres: ["Animation", "Drama ", "Romance", "Japanese"],
+    genres: ["Animation", "Drama", "Romance", "Japanese"],
     runtime: 130,
     trailerUrl: "https://youtu.be/nfK6UgLra7g",
     price: 20,

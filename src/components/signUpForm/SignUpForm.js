@@ -1,6 +1,7 @@
 import React, { useState, useReducer } from "react";
 import { useDispatch } from "react-redux";
 import { Link as RouterLink, useLocation, useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Avatar from "@material-ui/core/Avatar";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -100,6 +101,7 @@ const SignUpForm = props => {
   const dispatch = useDispatch();
   let location = useLocation();
   let history = useHistory();
+  const { t } = useTranslation(["translaitons", "login/signupPage"]);
   let { from } = location.state || { from: { pathname: "/" } };
 
   const [validationError, setValidationError] = useState(false);
@@ -135,7 +137,7 @@ const SignUpForm = props => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign Up
+          {t("translations:common.signUp")}
         </Typography>
         <form className={classes.form} onSubmit={formSubmit}>
           <Grid container spacing={2}>
@@ -147,7 +149,7 @@ const SignUpForm = props => {
                 required
                 fullWidth
                 id="firstName"
-                label="First Name"
+                label={t("login/signupPage:firstName")}
                 autoFocus
                 onChange={onChange}
               />
@@ -158,7 +160,7 @@ const SignUpForm = props => {
                 required
                 fullWidth
                 id="lastName"
-                label="Last Name"
+                label={t("login/signupPage:lastName")}
                 name="lastName"
                 autoComplete="lname"
                 onChange={onChange}
@@ -170,7 +172,7 @@ const SignUpForm = props => {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label={t("login/signupPage:mailAdress")}
                 name="email"
                 placeholder="email@example.com"
                 type="email"
@@ -178,14 +180,16 @@ const SignUpForm = props => {
                 onChange={onChange}
                 error={validationError}
                 helperText={
-                  validationError ? "Current Email is already exist" : ""
+                  validationError
+                    ? t("login/signupPage:validationError.signup")
+                    : ""
                 }
               />
             </Grid>
             <Grid item xs={12}>
               <FormControl variant="outlined" required fullWidth>
                 <InputLabel htmlFor="outlined-adornment-password">
-                  Password
+                  {t("login/signupPage:password")}
                 </InputLabel>
                 <OutlinedInput
                   id="outlined-adornment-password"
@@ -218,23 +222,23 @@ const SignUpForm = props => {
               variant="contained"
               className={classes.submit}
             >
-              Sign Up
+              {t("translations:common.signUp")}
             </ButtonGeneric>
             <Box my={2}>
               <Typography variant="body2" color="textSecondary" align="center">
-                OR
+                {t("login/signupPage:or")}
               </Typography>
             </Box>
             <Grid container>
               <GoogleLogIn className={classes.googleBtn}>
-                Join with Google
+                {t("login/signupPage:googleBtn.signup")}
               </GoogleLogIn>
             </Grid>
           </Box>
           <Grid container justify="center">
             <Grid>
               <Link to="/login" className={classes.navLink}>
-                {"Already have an account? Log In"}
+                {t("login/signupPage:dontHaveAccount.signup")}
               </Link>
             </Grid>
           </Grid>

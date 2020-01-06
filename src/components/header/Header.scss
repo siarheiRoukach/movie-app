@@ -16,6 +16,10 @@
   }
 
   &__controls {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
     margin-right: 5%;
   }
 
@@ -30,8 +34,10 @@
     }
 
     &__controls {
-      width: 80%;
+      align-items: center;
+
       margin-right: 0;
+      width: 80%;
     }
   }
 }
