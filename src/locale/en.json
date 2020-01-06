@@ -78,5 +78,9 @@
     "authSign": "Log in or sign up to leave a comment",
     "typeComment": "Type your comment",
     "postComment": "post comment"
+  },
+  "movieSorting": {
+    "rating": "Rating",
+    "date": "Date"
   }
 }

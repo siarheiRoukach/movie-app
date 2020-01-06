@@ -1,6 +1,8 @@
 export const SETACTIVEMOVIE = "movie/setActive";
 export const SETMOVIESDB = "movie/setMoviesDb";
 export const ADDCOMMENT = "movie/addComment";
+export const SORTBYRATING = "movie/sortByRating";
+export const SORTBYDATE = "movie/sortByDate";
 
 export const setActiveMovie = value => ({
   type: SETACTIVEMOVIE,
@@ -12,14 +14,24 @@ export const setMoviesDb = value => ({
   payload: value
 });
 
-export const addComment = value => ({
+export const addComment = comment => ({
   type: ADDCOMMENT,
-  payload: value
+  payload: comment
+});
+
+export const sortByRating = type => ({
+  type: SORTBYRATING,
+  payload: type
+});
+
+export const sortByDate = type => ({
+  type: SORTBYDATE,
+  payload: type
 });
 
 const initialState = {
   activeMovie: {},
-  moviesStorage: JSON.parse(localStorage.getItem("moviesDb")) || {}
+  moviesStorage: JSON.parse(localStorage.getItem("moviesDb")) || []
 };
 
 const reducer = (state = initialState, action) => {
@@ -45,6 +57,24 @@ const reducer = (state = initialState, action) => {
         activeMovie: movieToUpdate,
         moviesStorage: updatedMoviesStorage
       };
+    }
+    case SORTBYRATING: {
+      const sortedMoviesStorage = [...state.moviesStorage];
+      sortedMoviesStorage.sort((a, b) =>
+        action.payload === "asc"
+          ? a.vote_average - b.vote_average
+          : b.vote_average - a.vote_average
+      );
+      return { ...state, moviesStorage: sortedMoviesStorage };
+    }
+    case SORTBYDATE: {
+      const sortedMoviesStorage = [...state.moviesStorage];
+      sortedMoviesStorage.sort((a, b) => {
+        let dateA = new Date(a.release_date),
+          dateB = new Date(b.release_date);
+        return action.payload === "asc" ? dateA - dateB : dateB - dateA;
+      });
+      return { ...state, moviesStorage: sortedMoviesStorage };
     }
     default:
       return state;
