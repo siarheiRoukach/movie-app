@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
 import GoogleLogOut from "../../common/googleLogIn/GoogleLogIn";
@@ -12,6 +12,7 @@ import "./Header.scss";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const userStatus = useSelector(state => {
     return {
       isAuthenticated: state.auth.isAuthenticated,
@@ -63,8 +64,12 @@ const Header = () => {
           <> {profileControlsViewy}</>
         ) : (
           <>
-            <ButtonNav to="/login">Log In</ButtonNav>
-            <ButtonNav to="/signup">Sign Up</ButtonNav>
+            <ButtonNav to={{ pathname: "/login", state: { from: location } }}>
+              Log In
+            </ButtonNav>
+            <ButtonNav to={{ pathname: "/signup", state: { from: location } }}>
+              Sign Up
+            </ButtonNav>
           </>
         )}
       </div>

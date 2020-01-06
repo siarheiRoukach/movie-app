@@ -162,7 +162,7 @@ const movieDb = [
       "https://m.media-amazon.com/images/M/MV5BODRmZDVmNzUtZDA4ZC00NjhkLWI2M2UtN2M0ZDIzNDcxYThjL2ltYWdlXkEyXkFqcGdeQXVyNTk0MzMzODA@._V1_SY1000_SX675_AL_.jpg",
     overview:
       "Mitsuha is the daughter of the mayor of a small mountain town. She's a straightforward high school girl who lives with her sister and her grandmother and has no qualms about letting it be known that she's uninterested in Shinto rituals or helping her father's electoral campaign. Instead she dreams of leaving the boring town and trying her luck in Tokyo. Taki is a high school boy in Tokyo who works part-time in an Italian restaurant and aspires to become an architect or an artist. Every night he has a strange dream where he becomes...a high school girl in a small mountain town.",
-    budget: 3380000000,
+    budget: 3380000,
     revenue: 357986087,
     genres: ["Animation", "Drama", "Fantasy", "Romance", "Japanese"],
     runtime: 112,
@@ -182,7 +182,7 @@ const movieDb = [
     overview:
       "The story revolves around Shôko Nishimiya, a grade school student who has impaired hearing. She transfers into a new school, where she is bullied by her classmates, especially Shôya Ishida. It gets to the point where she transfers to another school and as a result, Shôya is ostracized and bullied himself, with no friends to speak to and no plans for the future. Years later, he sets himself on a path to redemption. ",
     budget: 0,
-    revenue: 33000000000,
+    revenue: 33000000,
     genres: ["Animation", "Drama ", "Romance", "Japanese"],
     runtime: 130,
     trailerUrl: "https://youtu.be/nfK6UgLra7g",
