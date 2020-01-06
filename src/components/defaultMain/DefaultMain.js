@@ -1,8 +1,7 @@
 import React from "react";
 import MoviesChart from "../moviesChart/MoviesChart";
-import "./Main.scss";
 
-const Main = () => {
+const DefaultMain = () => {
   return (
     <main>
       <div>Filter bar</div>
@@ -11,4 +10,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default DefaultMain;
