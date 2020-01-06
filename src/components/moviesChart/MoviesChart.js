@@ -4,7 +4,6 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 
 import MovieChartCard from "../../common/movieChartCard/MovieChartCard";
-import moviesDb from "../../utils/movieData";
 
 const useStyles = makeStyles(theme => ({
   cardGrid: {
@@ -13,12 +12,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const MoviesChart = () => {
+const MoviesChart = ({ moviesStorage }) => {
   const classes = useStyles();
+
   return (
     <Container className={classes.cardGrid} maxWidth="md">
       <Grid container spacing={8}>
-        {moviesDb.map(card => (
+        {moviesStorage.map(card => (
           <Grid item key={card.id} xs={12} sm={6} md={4}>
             <MovieChartCard movieData={card} />
           </Grid>
