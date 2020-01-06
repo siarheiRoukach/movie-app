@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import MoviesChart from "../moviesChart/MoviesChart";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
+import MovieSort from "../movieSort/MovieSort";
+import MoviesChart from "../moviesChart/MoviesChart";
 import movieData from "../../utils/movieData";
 import { setMoviesDb } from "../../redux/modules/movie";
 
@@ -13,6 +14,7 @@ const DefaultMain = () => {
   );
 
   useEffect(() => {
+    if (moviesStorage && moviesStorage.length) return;
     const currentMoviesDb = JSON.parse(localStorage.getItem("moviesDb"));
     if (!currentMoviesDb || !currentMoviesDb.length) {
       localStorage.setItem("moviesDb", JSON.stringify(movieData));
@@ -23,7 +25,7 @@ const DefaultMain = () => {
 
   return (
     <main>
-      <div>Filter bar</div>
+      <MovieSort />
       {moviesStorage ? (
         <MoviesChart moviesStorage={moviesStorage} />
       ) : (

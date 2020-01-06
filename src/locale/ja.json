@@ -78,5 +78,9 @@
     "authSign": "コメントを残すにはログインまたはサインアップしてください",
     "typeComment": "コメントを入力する",
     "postComment": "コメントを投稿する"
+  },
+  "movieSorting": {
+    "rating": "格付け",
+    "date": "日付"
   }
 }
