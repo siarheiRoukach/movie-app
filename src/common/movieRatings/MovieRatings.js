@@ -9,7 +9,7 @@ const MovieRatings = props => {
   const dispatch = useDispatch();
 
   const setNewRating = e => {
-    dispatch(setNewMovieRating({ [props.moviename]: e.target.value }));
+    dispatch(setNewMovieRating({ [props.movieid]: e.target.value }));
     dispatch(updateUsersDb());
   };
 

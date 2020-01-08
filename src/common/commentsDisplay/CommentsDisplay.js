@@ -53,6 +53,7 @@ const useStyles = makeStyles(theme => ({
     color: stylesUtils.textMainColor,
     padding: 16,
     whiteSpace: "pre-wrap",
+    wordWrap: " break-word",
     [theme.breakpoints.down("sm")]: {
       paddingLeft: 0
     }
