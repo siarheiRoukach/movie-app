@@ -16,6 +16,7 @@ import { setActiveMovie } from "../../redux/modules/movie";
 import Comments from "../comments/Comments";
 import MovieRatings from "../../common/movieRatings/MovieRatings";
 import ButtonNav from "../../common/buttonNav/ButtonNav";
+import CinemaSessions from "../cinemaSessions/CinemaSessions";
 
 const formatCurrency = (value, currency = "USD") => {
   const localFormat = localStorage.getItem("i18nextLng");
@@ -68,9 +69,6 @@ const useStyles = makeStyles(theme => ({
     fontWeight: "900"
   },
   buttonNav: {
-    "&:hover": {
-      backgroundColor: stylesUtils.lightMainColor
-    },
     "&$disabled": {
       color: "white",
       backgroundColor: stylesUtils.disabledColor
@@ -161,20 +159,20 @@ const MovieCard = () => {
                 /10
               </Typography>
 
-              {userMoviesRatings && userMoviesRatings[activeMovie.title] && (
+              {userMoviesRatings && userMoviesRatings[activeMovie.id] && (
                 <Typography
                   component="span"
                   variant="h6"
                   style={{ color: stylesUtils.captionColor }}
                 >
                   &nbsp;({t("translations:common.ratingsPrevious")}&nbsp;
-                  {userMoviesRatings[activeMovie.title]})
+                  {userMoviesRatings[activeMovie.id]})
                 </Typography>
               )}
 
               <Grid container justify="flex-end" alignItems="center">
                 <MovieRatings
-                  moviename={activeMovie.title}
+                  movieid={activeMovie.id}
                   rating={activeMovie.vote_average}
                   maxrating={10}
                   style={{ fontSize: "2rem" }}
@@ -221,6 +219,7 @@ const MovieCard = () => {
               </Card>
             </Grid>
             <Grid item xs={12} sm={6} md={7}>
+              <CinemaSessions cinemaSessions={activeMovie.cinemas} />
               <Typography
                 component="div"
                 variant="h5"
